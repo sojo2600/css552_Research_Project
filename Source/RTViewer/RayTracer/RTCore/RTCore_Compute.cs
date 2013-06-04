@@ -69,16 +69,16 @@ namespace RayTracer_552
                         }
                         // #endif
 
-                        if (mAnaglyph)
+                        if (!mAnaglyph)
                         {
                             computePixelColor(r, ref pixelColor, RGB);
                         }
                         else
                         {
                             Ray left = new Ray(mCamera.LeftEyePosition, pixelPos);
-                            computePixelColor(left, ref pixelColor, GREEN);
+                            computePixelColor(left, ref pixelColor, RED);
                             Ray right = new Ray(mCamera.RightEyePosition, pixelPos);
-                            computePixelColor(right, ref pixelColor, RED);
+                            computePixelColor(right, ref pixelColor, GREEN);
                         }
 
                         float sampleCoverage = 0f;

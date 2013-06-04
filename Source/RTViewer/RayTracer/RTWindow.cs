@@ -244,7 +244,7 @@ namespace RayTracer_552
                 mRT.SetDrawDB(DrawDB.Checked);
                 mRT.SetOrthoRT(OrthoRT.Checked);
                 mRT.SetMultiThreadCompute(MultiThreadCompute.Checked);
-
+                mRT.SetAnaglyph(chkAnaglyph.Checked);
                 mNewSceneForGUI = true;
 
             } else {
