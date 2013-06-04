@@ -76,9 +76,9 @@ namespace RayTracer_552
                         else
                         {
                             Ray left = new Ray(mCamera.LeftEyePosition, pixelPos);
-                            computePixelColor(left, ref pixelColor, RED);
+                            computePixelColor(left, ref pixelColor, GREEN);
                             Ray right = new Ray(mCamera.RightEyePosition, pixelPos);
-                            computePixelColor(right, ref pixelColor, GREEN);
+                            computePixelColor(right, ref pixelColor, RED);
                         }
 
                         float sampleCoverage = 0f;
@@ -170,6 +170,10 @@ namespace RayTracer_552
                 pixelColor.X += sampleColor.X;
             else if (channel == GREEN)
                 pixelColor.Y = sampleColor.Y;
+
+            // This prevents a yellow background by bringing in the color blue where there are no intersections
+            if (channel != RGB && rec.GeomIndex == RTCore.kInvalidIndex)
+                pixelColor.Z += sampleColor.Z / 2;
         }
     }
 }
