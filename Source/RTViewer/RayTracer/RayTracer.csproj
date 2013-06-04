@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9ABF6EAC-C0DC-4736-BF42-D781A14A2FCC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RayTracer_552</RootNamespace>
+    <AssemblyName>RayTracer</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\RayTracerExe\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\RayTracerExe\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|Itanium'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Itanium\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>Itanium</PlatformTarget>
+    <CodeAnalysisLogFile>..\RayTracerExe\RayTracer.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|Itanium'">
+    <OutputPath>bin\Itanium\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>Itanium</PlatformTarget>
+    <CodeAnalysisLogFile>..\RayTracerExe\RayTracer.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Release\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+    <Reference Include="Microsoft.Xna.Framework.Graphics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Acceleration\KdTree\KdTreeAxis.cs" />
+    <Compile Include="Acceleration\KdTree\KdTree.cs" />
+    <Compile Include="Acceleration\KdTree\KdTreeNode.cs" />
+    <Compile Include="Parser\CommandFileParser.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RTCore\RTCore_Acceleration.cs" />
+    <Compile Include="RTCore\RTCore_Init.cs" />
+    <Compile Include="RTCore\NeedToUse\RTCore_SceneDB.cs" />
+    <Compile Include="RTCore\NeedToUse\RTCore_Utilities.cs" />
+    <Compile Include="RTCore\RTCore_ImageFrameSupport.cs" />
+    <Compile Include="RTCore\DoNotChange\RTCore_ViewerDebug.cs" />
+    <Compile Include="RTCore\DoNotChange\RTCore_Parse.cs" />
+    <Compile Include="RTSupport\Geometry\RTGeometry_KdSupport.cs" />
+    <Compile Include="RTSupport\Geometry\RTGeometry_ParseXForm.cs" />
+    <Compile Include="RTSupport\Geometry\RTTRiangles_FromMesh.cs" />
+    <Compile Include="RTSupport\Geometry\RTTriangle.cs" />
+    <Compile Include="RTSupport\RT3DCamera.cs" />
+    <Compile Include="RTSupport\RTCamera.cs" />
+    <Compile Include="RTSupport\Geometry\RTRectangle.cs" />
+    <Compile Include="RTSupport\Geometry\RTGeometry.cs" />
+    <Compile Include="RTSupport\Geometry\RTSphere.cs" />
+    <Compile Include="RTSupport\ImageSpec.cs" />
+    <Compile Include="RTSupport\RaySupport\IntersectionRecord.cs" />
+    <Compile Include="RTSupport\RaySupport\Ray.cs" />
+    <Compile Include="RTSupport\SceneDatabase.cs" />
+    <Compile Include="RTSupport\SceneResourceSupport\IndexedResource.cs" />
+    <Compile Include="RTSupport\SceneResourceSupport\Light\RTLightType_SpotDepthMap.cs" />
+    <Compile Include="RTSupport\SceneResourceSupport\Light\RTLightType_Spot.cs" />
+    <Compile Include="RTSupport\SceneResourceSupport\Light\RTLightType_Directional.cs" />
+    <Compile Include="RTSupport\SceneResourceSupport\Light\RTLightType.cs" />
+    <Compile Include="RTSupport\SceneResourceSupport\Light\RTLightType_Point.cs" />
+    <Compile Include="RTSupport\SceneResourceSupport\Light\RTLight.cs" />
+    <Compile Include="RTSupport\SceneResourceSupport\RTMaterial.cs" />
+    <Compile Include="RTSupport\SceneResourceSupport\SceneResource.cs" />
+    <Compile Include="RTSupport\SceneResourceSupport\Textures\RTTextureType_Bump.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="RTSupport\SceneResourceSupport\Textures\RTTextureType_Grid.cs" />
+    <Compile Include="RTSupport\SceneResourceSupport\Textures\RTTextureType_Ramp.cs" />
+    <Compile Include="RTSupport\SceneResourceSupport\Textures\RTTextureType_Marble.cs" />
+    <Compile Include="RTSupport\SceneResourceSupport\Textures\RTTextureType_Sine.cs" />
+    <Compile Include="RTSupport\SceneResourceSupport\Textures\RTTextureType_Noise.cs" />
+    <Compile Include="RTSupport\SceneResourceSupport\Textures\RTTextureType_Checker.cs" />
+    <Compile Include="RTSupport\SceneResourceSupport\Textures\RTTextureType_Color.cs" />
+    <Compile Include="RTSupport\SceneResourceSupport\Textures\RTTextureType.cs" />
+    <Compile Include="RTSupport\SceneResourceSupport\Textures\RTTexture.cs" />
+    <Compile Include="RTCore\RTCore_Visibility.cs" />
+    <Compile Include="RTCore\RTCore_Shade.cs" />
+    <Compile Include="RTCore\RTCore_Compute.cs" />
+    <Compile Include="RTCore\NeedToUse\RTCore_ResultStorage.cs" />
+    <Compile Include="RTCore\NeedToUse\RTCore.cs" />
+    <Compile Include="RTCore\DoNotChange\RTCore_Thread.cs" />
+    <Compile Include="RTWindow.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RTWindow.Designer.cs">
+      <DependentUpon>RTWindow.cs</DependentUpon>
+    </Compile>
+    <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="RTWindow.resx">
+      <DependentUpon>RTWindow.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Acceleration\Two-LevelVoxel\" />
+    <Folder Include="Acceleration\UniformVoxel\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

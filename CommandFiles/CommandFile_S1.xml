@@ -1,0 +1,231 @@
+<?xml version="1.0"?>
+
+<!-- This is comment -->
+
+<!-- tags:
+
+ALWAYS: RayTracer_552
+
+    Camera:
+		EyePosition: xyz
+		LookAt: xyz
+		UpVector: xyz
+		FOV: float
+		Focus: float
+	
+	Image:
+		Resolution: int int
+		Sample: 
+			Type: string (Uniform, Jittered)
+			N: int
+			
+	RayTracer:
+		Generation: int
+		Shadow: on/off
+	
+	Illumination:
+		Ambient: float
+		Background: rgb
+		
+		Light:
+			Position: xyz
+			Color: rgb
+		
+		Texture: 
+			Index: int
+			Type: string (!! Index and Type must be the first two elements!!)
+			Filename: string
+			
+		Material:
+			Index: int
+			Color: rgb
+			Kd, Ks: float
+			N : int
+			Reflectivity: float
+			Transparency: float
+			TextureIndex: int
+	
+	Geometry:
+		Sphere:
+			Radius: float
+			Center: xyz
+			MaterialIndex: int
+		
+		rectangle:
+			MaterialIndex
+			vertices x4  (always 4 and always right-angle!!)
+-->
+
+<RayTracer_552>
+
+<camera>
+    <!--       x     y     z -->
+	<eye>      -8    5    -8    </eye> 
+	<lookat>   0    0    0  </lookat>
+	<upvector>0     1     0    </upvector>
+	<fov> 45.0 </fov> <!-- this is vertical FOV in degree!!-->
+	<focus> 2.0 </focus>
+</camera>
+
+<imagespec>
+	<samples> 1 </samples> <!-- number of samples per pixel -->
+	<resolution>640 480</resolution>
+</imagespec>
+
+<rtspec>
+	<generation> 2 </generation>
+		<!--
+			0: ray casting
+			1: allows one bounce reflection
+			2: two reflection bounces ...
+		--> 
+		
+	<shadow> 1 </shadow> <!-- 0:off, 1: on -->
+	<reflection> 1 </reflection> <!-- 0:off, 1: on -->
+	<background> 0.7 0.6 0.6 </background> <!-- background color -->
+</rtspec>
+
+
+<rectangle>
+  	<material> 3 </material> <!-- small little plane in the large sphere -->
+	<vertices> -0.5 0 -0.5 </vertices> <!-- exactly 4 sets! -->
+	<vertices> 0.5 0 -0.5 </vertices>
+	<vertices> 0.5 0 0.5 </vertices>
+	<vertices> -0.5 0 0.5</vertices>
+	<xform>
+		<translation> 1 1 0 </translation>
+		<scale> 4 1 2 </scale>
+		<rotationX> 0 </rotationX>
+		<rotationY> 90 </rotationY> <!-- in degree -->
+		<rotationZ> 0 </rotationZ>
+	</xform>
+</rectangle>
+
+
+<rectangle>
+  	<material> 2 </material>  <!-- horizontal flat plane -->
+	<vertices> -4 0 -4 </vertices> <!-- exactly 4 sets! -->
+	<vertices> 4 0 -4 </vertices>
+	<vertices> 4 0 4 </vertices>
+	<vertices> -4 0 4</vertices>
+</rectangle>
+
+
+<rectangle>
+  	<material> 3 </material> <!-- plane to the right -->
+	<vertices> -4 -2  4 </vertices> <!-- exactly 4 sets! -->
+	<vertices>  4 -2  4 </vertices>
+	<vertices>  4  2  4 </vertices>
+	<vertices> -4  2  4</vertices>
+</rectangle>
+
+
+<sphere>
+	<center> -4 0 2 </center> <!-- stuck between two planes (smallest) -->
+	<radius> 1 </radius>
+	<material> 1 </material>  <!-- index to the materials -->
+</sphere>
+
+<sphere>
+	<center> -1 1.5 0.0 </center> <!-- closest to the camrea (medium size) -->
+	<radius> 1.5 </radius>
+	<material> 3 </material>  <!-- index to the materials -->
+</sphere>
+
+
+<sphere>
+	<center> 1 1 1 </center> <!-- largest sphere: to the left -->
+	<radius> 2 </radius>
+	<material> 1 </material>  <!-- index to the materials -->
+</sphere>
+
+<sphere>
+	<center> 2 3 -1 </center> <!-- smallest floating in the front -->
+	<radius> 0.5 </radius>
+	<material> 2 </material>  <!-- index to the materials -->
+</sphere>
+
+
+<material>
+	<index> 1 </index> <!-- entry number in the material table -->
+	<ka> 0.1 0.1 0.1 </ka> <!-- rgb -->
+	<kd> 0.1 0.6 0.1 </kd> <!-- greenish -->
+	<ks> 0.4 0.2 0.2 </ks>
+	<reflectivity> 0.2 </reflectivity>
+	<transparency> 0.0 </transparency>
+	<refractiveindex> 1.0 </refractiveindex>
+	<n> 10 </n>
+	<textureindex> 1 </textureindex>
+</material>
+
+<material>
+	<index> 2 </index> <!-- entry number in the material table -->
+	<ka> 0.1 0.1 0.1 </ka> <!-- rgb -->
+	<kd> 0.1 0.1 0.4 </kd> <!-- blue-ish -->
+	<ks> 0.3 0.3 0.1 </ks>
+	<reflectivity> 0.2 </reflectivity>
+	<transparency> 0.0 </transparency>
+	<refractiveindex> 1.0 </refractiveindex>
+	<n> 5 </n>
+	<textureindex> 2 </textureindex>
+</material>
+
+
+<material>
+	<index> 3 </index> <!-- entry number in the material table -->
+	<ka> 0.1 0.1 0.1 </ka> <!-- rgb -->
+	<kd> 0.2 0.2 0.2 </kd> <!-- red-ish -->
+	<ks> 0.1 0.2 0.2 </ks>
+	<reflectivity> 0 </reflectivity>
+	<transparency> 0.0 </transparency>
+	<refractiveindex> 1.0 </refractiveindex>
+	<n> 5 </n>
+	<textureindex> 0 </textureindex>
+</material>
+
+<light>
+	<type>point</type> <!-- later, directional -->
+	<position>0 10 0</position>
+	<color> 0.4 0.4 0.1 </color>
+</light>
+
+
+<light>
+	<type>point</type> <!-- later, directional -->
+	<position>6 16 0</position>
+	<color> 0.1 0.1 0.4 </color>
+</light>
+
+
+
+<light>
+	<type>point</type> <!-- later, directional -->
+	<position>-20 0 -5</position>
+	<color> 0.3 0.3 0.3 </color>
+</light>
+
+
+<texture> <!-- index and type must be the first two elements!! -->
+	<index> 0 </index> <!-- entry number in the texture table -->
+	<type> color </type> <!-- for now, later, bump, checker, etc. etc. -->
+	<filename> WaterLilies.jpg </filename>
+</texture>
+
+
+<texture>
+	<index> 1 </index> <!-- entry number in the texture table -->
+	<type> color </type> <!-- for now, later, bump, checker, etc. etc. -->
+	<filename> KelvinInOffice.jpg </filename>
+</texture>
+
+<texture>
+	<index> 2 </index> <!-- entry number in the texture table -->
+	<type>checker</type> <!-- for now, later, bump, checker, etc. etc. -->
+	<urepeat> 10 </urepeat>
+	<vrepeat> 20 </vrepeat>
+	<color1>0 0 1</color1> <!-- default is white -->
+    <color2>0 1 0</color2> <!-- default is black -->
+</texture>
+
+
+</RayTracer_552>

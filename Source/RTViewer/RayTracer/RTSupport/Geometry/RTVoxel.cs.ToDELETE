@@ -1,0 +1,196 @@
+﻿// Code: based on Tim Chuang Winter 2012's CSS552 Final Project.
+// Algorithm: based on Sung and Shirley, Kd Tree (we called it BSP tree) from 1992(?)
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Microsoft.Xna.Framework;
+
+namespace RayTracer_552
+{
+    /// <summary>
+    /// A Sphere.
+    /// </summary>
+    public class RTVoxel : RTGeometry
+    {
+        private Vector3 mVec1;
+        private Vector3 mVec2;
+        private Vector3 mVec3;
+        private Vector3 mU; // x direction
+        private Vector3 mV; // y direction
+        private Vector3 mW; // z direction
+
+        private float mDepth;
+        private float mWidth;
+        private float mHeight;
+
+        private Vector3[] mVertices;
+        private BoundingBox[] sides;
+
+        private float mHalfSurfaceArea;
+
+        /// <summary>
+        /// Construct a bounding box - it should be axis aligned to simplify implementation
+        /// </summary>
+        /// <param name="parser"></param>
+        public RTVoxel(Vector3 min, Vector3 max)
+        {
+
+            
+            // we need 4 points to form a cube
+            // vertices[0] = top left corner of the "front" face
+            // vertices[1] = top right corner of the "front" face
+            // vertices[2] = bottom left corner of the "front" face
+            // vertices[3] = top left of the "back" face
+
+            mVertices = new Vector3[8]; // 8 points
+            mVertices[0] = new Vector3(min.X, max.Y, max.Z);
+            mVertices[1] = new Vector3(max.X, max.Y, max.Z);
+            mVertices[2] = new Vector3(min.X, min.Y, max.Z);
+            mVertices[3] = new Vector3(min.X, max.Y, min.Z);
+
+
+            mVertices[4] = new Vector3(max.X, min.Y, max.Z); // bottom right of the "front"
+            mVertices[5] = new Vector3(max.X, max.Y, min.Z); // top right of the "back" face
+            mVertices[6] = new Vector3(min.X, min.Y, min.Z); // bottom left of the "back" face
+            mVertices[7] = new Vector3(max.X, min.Y, min.Z); // bottom right of the "back" face
+
+            CalculateArea();
+
+            InitializeSides(); 
+
+        }
+
+
+
+        /// <summary>
+        /// Construct a bounding box - it should be axis aligned to simplify implementation
+        /// </summary>
+        /// <param name="parser"></param>
+        public RTVoxel(Vector3[] vertices)
+        {
+            // we need 4 points to form a cube
+            // vertices[0] = top left corner of the "front" face
+            // vertices[1] = top right corner of the "front" face
+            // vertices[2] = bottom left corner of the "front" face
+            // vertices[3] = top left of the "back" face
+
+            mVertices = new Vector3[8]; // 8 points
+            mVertices[0] = vertices[0];
+            mVertices[1] = vertices[1];
+            mVertices[2] = vertices[2];
+            mVertices[3] = vertices[3];
+
+            mU = Vector3.UnitX;
+            mV = Vector3.UnitY;
+            mW = Vector3.UnitZ;
+
+            CalculateArea();
+
+            mVertices[4] = mVertices[2] + mU * mWidth; // bottom right of the "front"
+            mVertices[5] = mVertices[1] - mW * mDepth; // top right of the "back" face
+            mVertices[6] = mVertices[2] - mW * mDepth; // bottom left of the "back" face
+            mVertices[7] = mVertices[4] - mW * mDepth; // bottom right of the "back" face
+
+            InitializeSides();
+
+        }
+
+        private void InitializeSides()
+        {
+            sides = new BoundingBox[6];
+            // -X 
+            sides[0] = new BoundingBox(mVertices[2], mVertices[1]); 
+     
+            // +X 
+            sides[1] = new BoundingBox(mVertices[6], mVertices[0]); 
+     
+            // -Y 
+            sides[2] = new BoundingBox(mVertices[4], mVertices[5]); 
+     
+            // +Y 
+            sides[3] = new BoundingBox(mVertices[0], mVertices[5]); 
+     
+            // -Z 
+            sides[4] = new BoundingBox(mVertices[2], mVertices[7]); 
+     
+            // +Z 
+            sides[5] = new BoundingBox(mVertices[6], mVertices[5]); 
+
+        }
+
+        private void CalculateArea()
+        {
+            mVec1 = mVertices[1] - mVertices[0];
+            mVec2 = mVertices[2] - mVertices[0];
+            mVec3 = mVertices[3] - mVertices[0];
+
+            mDepth = mVec3.Length();
+            mHeight = mVec2.Length();
+            mWidth = mVec1.Length();
+
+            mHalfSurfaceArea = mWidth * mDepth + mWidth * mHeight + mDepth * mHeight;
+        }
+
+        /// <summary>
+        /// Intersects the ray with the box. If intersection is closer than what is
+        /// in the record, updates the record with new intersection information.
+        /// </summary>
+        /// <param name="ray"></param>
+        /// <param name="record"></param>
+        /// <returns></returns>
+        public override bool Intersect(Ray ray, IntersectionRecord record)
+        {
+            return false;
+        }
+
+        
+
+        /// <summary>
+        /// pt is a position on on the sphere, returns the normalized U/V value (between 0 to 1)
+        /// No error checking, if pt is not on the geometry, return values are undefined.
+        /// </summary>
+        /// <param name="pt">position inside the sphere (no error checking!)</param>
+        /// <param name="bc">barrycentric coordinate of hit point (for triangle only)</param>
+        /// <param name="u">returned normalized u value</param>
+        /// <param name="v">returned normalized v value</param>
+        public override void GetUV(Vector3 pt, Vector3 bc, ref float u, ref float v)
+        {
+            u = 0;
+            v = 0;
+        }
+
+
+        /// <summary>
+        /// recreives (u,v) and returns the object position that corresponds to the (u,v) coordinate.
+        /// </summary>
+        /// <param name="u">normalized u</param>
+        /// <param name="v">normalized v</param>
+        /// <returns>A position that cooresponds to (u,v) on the geometry </returns>
+        public override Vector3 GetPosition(float u, float v)
+        {
+            return Vector3.Zero;
+        }
+
+        public override Vector3 Min { get { return mVertices[6]; } }
+        public override Vector3 Max { get { return mVertices[1]; } }
+
+        /*
+        public float GetAxisAlignedMinOn(KdTreeAxis axis)
+        {
+            return axis.GetVectorComponent(Min);
+        }
+
+        public float GetAxisAlignedMaxOn(KdTreeAxis axis)
+        {
+            return axis.GetVectorComponent(Max);
+        }
+         * */
+
+        public float HalfSurfaceArea { get { return mHalfSurfaceArea; } } // for approx cost of a voxel 
+        public float Height { get { return mHeight; } }
+        public float Width { get { return mWidth; } }
+        public float Depth { get { return mDepth; } }
+    }
+}
