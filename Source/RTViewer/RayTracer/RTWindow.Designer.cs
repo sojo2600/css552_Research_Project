@@ -48,7 +48,7 @@
             this.SkipDraws = new System.Windows.Forms.CheckBox();
             this.PixelInWorld = new System.Windows.Forms.CheckBox();
             this.DrawDB = new System.Windows.Forms.CheckBox();
-            this.chkAnaglyph = new System.Windows.Forms.CheckBox();
+            this.listAnaglyph = new System.Windows.Forms.ComboBox();//new System.Windows.Forms.ListBox();//new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.mImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mMask)).BeginInit();
             this.SuspendLayout();
@@ -269,15 +269,16 @@
             // 
             // chkAnaglyph
             // 
-            this.chkAnaglyph.AutoSize = true;
-            this.chkAnaglyph.Location = new System.Drawing.Point(791, 30);
-            this.chkAnaglyph.Margin = new System.Windows.Forms.Padding(2);
-            this.chkAnaglyph.Name = "chkAnaglyph";
-            this.chkAnaglyph.Size = new System.Drawing.Size(70, 17);
-            this.chkAnaglyph.TabIndex = 23;
-            this.chkAnaglyph.Text = "Anaglyph";
-            this.chkAnaglyph.UseVisualStyleBackColor = true;
-            this.chkAnaglyph.CheckedChanged += new System.EventHandler(this.chkAnaglyph_CheckedChanged_1);
+            this.listAnaglyph.AutoSize = true;
+            this.listAnaglyph.Location = new System.Drawing.Point(791, 30);
+            this.listAnaglyph.Margin = new System.Windows.Forms.Padding(2);
+            this.listAnaglyph.Name = "chkAnaglyph";
+            this.listAnaglyph.Size = new System.Drawing.Size(70, 17);
+            this.listAnaglyph.TabIndex = 23;
+            this.listAnaglyph.Text = "Anaglyph";
+            setAnaglyphList();
+            //this.chkAnaglyph. .UseVisualStyleBackColor = true;
+            //this.chkAnaglyph.CheckedChanged += new System.EventHandler(this.chkAnaglyph_CheckedChanged_1);
             // 
             // RTWindow
             // 
@@ -286,7 +287,7 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.Controls.Add(this.chkAnaglyph);
+            this.Controls.Add(this.listAnaglyph);
             this.Controls.Add(this.DrawDB);
             this.Controls.Add(this.PixelInWorld);
             this.Controls.Add(this.SkipDraws);
@@ -316,7 +317,16 @@
             this.PerformLayout();
 
         }
-
+        private void setAnaglyphList()
+        {
+            this.listAnaglyph.Items.Add("No3D");
+            this.listAnaglyph.Items.Add("RedGreen");
+            this.listAnaglyph.Items.Add("RedBlue");
+            this.listAnaglyph.Items.Add("RedCyan");
+            this.listAnaglyph.Items.Add("GreenRed");
+            this.listAnaglyph.Items.Add("GreenMagenta");
+            this.listAnaglyph.SelectedIndex = 0;
+        }
         #endregion
 
         private System.Windows.Forms.PictureBox mImage;
@@ -339,7 +349,7 @@
         private System.Windows.Forms.CheckBox SkipDraws;
         private System.Windows.Forms.CheckBox PixelInWorld;
         private System.Windows.Forms.CheckBox DrawDB;
-        private System.Windows.Forms.CheckBox chkAnaglyph;
+        private System.Windows.Forms.ComboBox listAnaglyph;
     }
 }
 

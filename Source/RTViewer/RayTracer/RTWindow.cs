@@ -244,7 +244,7 @@ namespace RayTracer_552
                 mRT.SetDrawDB(DrawDB.Checked);
                 mRT.SetOrthoRT(OrthoRT.Checked);
                 mRT.SetMultiThreadCompute(MultiThreadCompute.Checked);
-                mRT.SetAnaglyph(chkAnaglyph.Checked);
+                mRT.SetAnaglyph(listAnaglyph.SelectedItem.ToString());
                 mNewSceneForGUI = true;
 
             } else {
@@ -379,8 +379,8 @@ namespace RayTracer_552
         private void chkAnaglyph_CheckedChanged_1(object sender, EventArgs e)
         {
             if (mRT != null)
-                mRT.SetAnaglyph(chkAnaglyph.Checked);
-            if (chkAnaglyph.Checked)
+                mRT.SetAnaglyph(listAnaglyph.SelectedItem.ToString());
+            if (listAnaglyph.SelectedIndex != 0)
                 OrthoRT.Checked = false;
         }
     }

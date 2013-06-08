@@ -46,9 +46,9 @@ namespace RayTracer_552.RTSupport
                     shortestDist = curDist;
             }// end for
 
-            float eyeSeparation = shortestDist / 30;
-            leftCamera = mEye + mSideVec * eyeSeparation / 2;
-            rightCamera = mEye - mSideVec * eyeSeparation / 2;
+            float eyeSeparation = (shortestDist / 30f);// +0.25f;
+            leftCamera = mEye + mSideVec * eyeSeparation / 2f;
+            rightCamera = mEye - mSideVec * eyeSeparation / 2f;
         }
 
         public Vector3 RightEyePosition { get { return rightCamera; } }
